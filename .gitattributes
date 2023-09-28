@@ -1,2 +1,89 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+#include <iostream>
+using namespace std;
+
+class Dice{
+public:
+    void Roller(const int a[]){
+        for (int i = 0; i < RollNum; ++i) {
+            RollerArr[i] = a[i];
+            cout << RollerArr[i] << " ";
+
+        }
+    }
+
+private:
+    int const RollNum = 100;
+    int RollerArr[100]{};
+};
+
+class TwoSided : public Dice{
+public:
+
+    void RoleTwo(){
+        int arr[100];
+        for(int i = 0; i < 100; ++i) {
+            arr[i] = rand()%2 +1;
+        }
+        cout << "\nThe outcome of flipping a coin 100 times: ";
+        Roller(arr);
+    }
+private:
+
+};
+
+class FourSided : public Dice{
+public:
+    void RoleFour(){
+        int arr[100];
+        for (int i = 0; i < 100; ++i) {
+            arr[i] = (rand()%4 + 1);
+
+        }
+        cout << "\nThe outcome of rolling a four-sided die 100 times: ";
+        Roller(arr);
+    }
+private:
+};
+class SixSided : public Dice{
+public:
+    void RoleSix(){
+        int arr[100];
+        for (int i = 0; i < 100; ++i) {
+            arr[i] = (rand()%6 + 1);
+
+        }
+        cout << "\nThe outcome of rolling a six-sided die 100 times: ";
+        Roller(arr);
+    }
+private:
+};
+class FiftyTwoSided : public Dice{
+public:
+    void RoleFiftTwo(){
+        int arr1[100];
+        for (int i = 0; i < 100; ++i) {
+            arr1[i] = (rand()%52 + 1);
+
+        }
+        cout << "\nThe outcome of drawing from a Fifty-Two numbered stack of cards: ";
+        Roller(arr1);
+    }
+private:
+};
+
+class ProbabilityEngine : public TwoSided,FourSided,SixSided,FiftyTwoSided{
+public:
+    void Runner(){
+        TwoSided d1;
+        FourSided d2;
+        SixSided d3;
+        FiftyTwoSided d4;
+
+        d1.RoleTwo();
+        d2.RoleFour();
+        d3.RoleSix();
+        d4.RoleFiftTwo();
+
+    }
+
+};
